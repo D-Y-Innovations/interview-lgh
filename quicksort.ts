@@ -1,10 +1,8 @@
 var quickSort = function (arr, left, right) {
-
   if (right <= left) {
 	return;
 }
 
-  
   left = 0;
   right = arr.length - 1;
 
@@ -13,7 +11,6 @@ var quickSort = function (arr, left, right) {
   var temp = arr[left];
 
   while (leftPoint != rightPoint) {
-
     while (arr[rightPoint] >= temp && leftPoint < rightPoint) {
       rightPoint--;
     }
@@ -26,7 +23,6 @@ var quickSort = function (arr, left, right) {
       arr[rightPoint] = changeNumber;
     }
   }
-
   arr[left] = arr[leftPoint];
   arr[leftPoint] = temp;
 

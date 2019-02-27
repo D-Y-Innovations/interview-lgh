@@ -1,9 +1,9 @@
-﻿import superagent = require('http');
+﻿import http = require('http');
 import cheerio = require('cheerio');
 
 
 const remote_get =function(url: string) {
- const promise = new Promise<superagent.Response>(function(resolve,reject){
+const promise = new Promise<superagent.Response>(function(resolve,reject){
 	http.get(url)
 		.end(function(err,res){
 			if(!err){
@@ -16,6 +16,7 @@ const remote_get =function(url: string) {
 	});
 	return promise;
 }
+
 let result =0;
 let count=11;
 let sum=0;
@@ -32,4 +33,5 @@ async function crawl(){
     }
     console.log("结果"+result);
 }
+
 crawl();

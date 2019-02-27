@@ -1,19 +1,27 @@
 let Tree = (function() {
-    class Node {
+
+class Node {
+
         key:any;
         left:any;
         right:any;
+		
 	constructor(thekey:any) {
             this.key = thekey;
             this.left = null;
             this.right = null;
 	 }
     }
-    class BinarySearchTree {
+	
+	
+class BinarySearchTree {
+
         root:any;
+		
 	 constructor() {
             this.root = null;
         }
+		
 	add(key:any) {
             var newNode = new Node(key);
             if(this.root === null) {
@@ -22,6 +30,7 @@ let Tree = (function() {
 	 this.insertNode(this.root, newNode);
             }
         }
+		
 	insertNode(node:any, newNode:any) {
             if(newNode.key < node.key) {
 		 if(node.left === null) {
@@ -37,15 +46,17 @@ let Tree = (function() {
                 }
             }
 	}
+	
 	 hasValue(key:number) {
             console.log(this.searchNode(this.root, key))
 	 return this.searchNode(this.root, key);
         }
-        searchNode(node:any, key:any):any {
+		
+      searchNode(node:any, key:any):any {
 		 if(node === null) {
                 return false;
             }
-	 if(key < node.key) {
+	 	 if(key < node.key) {
                 return this.searchNode(node.left, key);
 	 } else if(key > node.key) {
                 return this.searchNode(node.right, key);
@@ -54,20 +65,24 @@ let Tree = (function() {
             }
 		 return 0;
         }
-		 print(callback:any) {
+		
+	  print(callback:any) {
             this.printNode(this.root, callback);
         }
-		 printNode(node:any, callback:any) {
+		
+	  printNode(node:any, callback:any) {
             if(node !== null) {
 		 this.printNode(node.left, callback);
                 callback(node.key);
                 this.printNode(node.right, callback);
 		 }
         }
-        min(){
+		
+       min(){
 		  return this.minNode(this.root);
         }
-		 minNode(node:any) {
+		
+	   minNode(node:any) {
             if(node) {
                 while(node && node.left !== null) {
 		  node = node.left;
@@ -76,7 +91,8 @@ let Tree = (function() {
             }
             return null;
         }
-		  remove(element:number) {
+		
+		remove(element:number) {
             if(this.hasValue(element)){
                 this.root = this.removeNode(this.root, element);
 		 console.log("已经删除节点:"+element);
@@ -84,27 +100,26 @@ let Tree = (function() {
                 console.log("不存在节点:"+element+'请从新输入');
 		}
 	}
-		 findMinNode(node:any) {
+	
+		findMinNode(node:any) {
             while(node && node.left !== null) {
                 node = node.left;
 	 }
-
             return node;
         }
+		
 		 removeNode(node:any, element:number) {
             if(node === null) {
                 return null;
 	 }
             if(element < node.key) {
                 node.left = this.removeNode(node.left, element);
-		 return node;
-
+						 return node;
             } else if(element > node.key) {
 		 node.right = this.removeNode(node.right, element);
                 return node;
 		 } else { 
-
-                if(node.left === null && node.right === null) {
+            if(node.left === null && node.right === null) {
 		node = null;
                     return node;
                 }
@@ -117,14 +132,14 @@ let Tree = (function() {
 		}
                 var aux = this.findMinNode(node.right);
                 node.key = aux.key;
-		 node.right = this.removeNode(node.right, aux.key);
+				node.right = this.removeNode(node.right, aux.key);
                 return node;
             }
 	 };
-
     }
 	return BinarySearchTree;
 })()
+
 var tree = new Tree();
 let arrss:any=[];
 tree.add(11);
